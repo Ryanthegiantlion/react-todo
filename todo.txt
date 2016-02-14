@@ -1,0 +1,1 @@
+1. Add persistent state via local storage
