@@ -2,27 +2,34 @@
 	'use strict';
 
 	var Todo = React.createClass({
-	  render: function() {
-	    return (
-	      <li className="completed">
-			<div className="view">
-				<input className="toggle" type="checkbox" checked />
-				<label>{this.props.children}</label>
-				<button className="destroy"></button>
-			</div>
-			<input className="edit" value="Create a TodoMVC template" />
-		</li>
-	    );
+		handleDestroy: function() {
+			this.props.onDestroy(this.props);
+		},
+	  	render: function() {
+		    return (
+		      	<li className={this.props.isCompleted ? "completed":""} data-id={this.props.id}>
+					<div className="view">
+						<input className="toggle" type="checkbox" checked={this.props.isCompleted} />
+						<label>{this.props.children}</label>
+						<button className="destroy" onClick={this.handleDestroy}></button>
+					</div>
+					<input className="edit" value="Create a TodoMVC template" />
+				</li>
+		    );
 	  }
 	});
 
 	var TodoList = React.createClass({
+		handleDestroy: function(item) {
+			console.log(item);
+			this.props.onDestroy(item);
+		},
 	  	render: function() {
 	  		var todoNodes = this.props.todos.map(function(todo) {
 	  			return (
-	  				<Todo key={todo.id} isCompleted={todo.isCompleted}>{todo.text}</Todo>
+	  				<Todo key={todo.id} isCompleted={todo.isCompleted} onDestroy={this.handleDestroy} id={todo.id}>{todo.text}</Todo>
 	  			)
-	  		});
+	  		}.bind(this));
 	    	return (
 		      	<section className="main">
 					<input className="toggle-all" type="checkbox" />
@@ -98,12 +105,17 @@
 			console.log(newTodos);
 			this.setState({todos: newTodos});
 		},
+		handleDestroy: function(item) {
+			var currentTodos = this.state.todos;
+			var newTodos = currentTodos.filter(function(todo) { return todo.id != item.id });
+			this.setState({ todos: newTodos });
+		},
   		render: function() {
   			console.log('todo box render');
     		return (
     			<section className="todoapp">
 	      			<Header onTodoAdd={this.handleTodoAdd} />
-	      			<TodoList todos={this.state.todos}/>
+	      			<TodoList todos={this.state.todos} onDestroy={this.handleDestroy}/>
 	      			<Footer />
 	      		</section>
     		);
