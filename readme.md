@@ -1,33 +1,19 @@
 # Framework Name • [TodoMVC](http://todomvc.com)
 
-> Official description of the framework (from its website)
-
-
-## Resources
-
-- [Website]()
-- [Documentation]()
-- [Used by]()
-- [Blog]()
-- [FAQ]()
+> A TodoMVC app built with React framework.
 
 ### Articles
 
-- [Interesting article]()
-
-### Support
-
-- [StackOverflow](http://stackoverflow.com/questions/tagged/__)
-- [Google Groups]()
-- [Twitter](http://twitter.com/__)
-- [Google+]()
-
-*Let us [know](https://github.com/tastejs/todomvc/issues) if you discover anything worth sharing.*
+- [React Tuorial](https://facebook.github.io/react/docs/tutorial.html)
 
 
 ## Implementation
 
-How was the app created? Anything worth sharing about the process of creating the app? Any spec violations?
+Created with [React](https://facebook.github.io/react/)
+
+## Example
+
+This code is hosted on [s3](https://s3-eu-west-1.amazonaws.com/react-todo/index.html)
 
 
 ## Credit
